@@ -1,0 +1,3 @@
+<input id="name" type="text"  [formControl]="userName" >
+<p>Value: {{ userName.value }}</p>
+<div *ngFor="let user of usersFiltered">{{user.name}}</div>
