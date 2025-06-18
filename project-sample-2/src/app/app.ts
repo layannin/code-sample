@@ -22,16 +22,18 @@ export class App {
         this.usersFiltered = users;
       }
     )
-    this.userName.registerOnChange((username: string) => {
-      this.onChange(username);
-    })
+    this.userName.valueChanges.subscribe(
+      (username: string | null) => {
+        this.onChange(username);
+      }
+    )
   }
 
-  public onChange(value: string){
+  public onChange(value: string | null){
     console.log(value);
-    if(value.length > 0){
+    if(!!value){
 
-      this.usersFiltered = this.users.filter(user => user.name.includes(value));
+      this.usersFiltered = this.users.filter(user => user.name.toLowerCase().includes(value.toLowerCase()));
 
     }
     else{
